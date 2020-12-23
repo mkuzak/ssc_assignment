@@ -3,33 +3,64 @@ first rmarkdown
 Tina
 12/23/2020
 
-## R Markdown
+This is a document that has some words and code in it.
 
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that
-includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
+# This is a section with some old hw
 
 ``` r
-summary(cars)
+library(tidyverse)
 ```
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+I use `message = FALSE` in the library code chunk to not show the
+messages that come with loading the library.
 
-## Including Plots
+``` r
+#This is a part of a homework that I randomly copied from DS100.
 
-You can also embed plots, for example:
+ggplot(data = diamonds, aes(x = x)) +
+  geom_histogram(binwidth = 0.5)
+```
 
-![](first_rmarkdown_files/figure-gfm/pressure-1.png)<!-- -->
+![](first_rmarkdown_files/figure-gfm/hw1-1.png)<!-- -->
 
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+``` r
+ggplot(data = diamonds, aes(x = y)) +
+  geom_histogram(binwidth = 1)
+```
+
+![](first_rmarkdown_files/figure-gfm/hw1-2.png)<!-- -->
+
+This is where I explain what the code does and interpret the results.
+
+``` r
+ggplot(data = diamonds, aes(x = z)) +
+  geom_histogram(binwidth = 1)
+```
+
+![](first_rmarkdown_files/figure-gfm/hw2-1.png)<!-- -->
+
+And then I do it again for another graph.
+
+# Next section with other hw
+
+This is from week 9.
+
+``` r
+library(tidyverse)
+library(Lahman)
+library(lubridate)
+library(mosaicData)
+```
+
+``` r
+Teams_long <- Teams %>%
+  filter(teamID == "CHN") %>%
+  select(yearID, teamID, HR, HRA) %>%
+  pivot_longer(cols = c(HR, HRA),
+               names_to = "names",
+               values_to = "number")
+ggplot(Teams_long, aes(x = yearID, y = number, color = names)) +
+  geom_line()
+```
+
+![](first_rmarkdown_files/figure-gfm/hw3-1.png)<!-- -->

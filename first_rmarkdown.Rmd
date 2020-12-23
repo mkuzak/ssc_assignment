@@ -9,22 +9,53 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+This is a document that has some words and code in it.
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# This is a section with some old hw
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r library, message = FALSE}
+library(tidyverse)
 ```
 
-## Including Plots
+I use `message = FALSE` in the library code chunk to not show the messages that come with loading the library. 
 
-You can also embed plots, for example:
+```{r hw1}
+#This is a part of a homework that I randomly copied from DS100.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+ggplot(data = diamonds, aes(x = x)) +
+  geom_histogram(binwidth = 0.5)
+ggplot(data = diamonds, aes(x = y)) +
+  geom_histogram(binwidth = 1)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+This is where I explain what the code does and interpret the results.
+
+```{r hw2}
+ggplot(data = diamonds, aes(x = z)) +
+  geom_histogram(binwidth = 1)
+```
+
+And then I do it again for another graph.
+
+# Next section with other hw
+
+This is from week 9.
+
+```{r libraries2, message = FALSE}
+library(tidyverse)
+library(Lahman)
+library(lubridate)
+library(mosaicData)
+```
+
+```{r hw3}
+Teams_long <- Teams %>%
+  filter(teamID == "CHN") %>%
+  select(yearID, teamID, HR, HRA) %>%
+  pivot_longer(cols = c(HR, HRA),
+               names_to = "names",
+               values_to = "number")
+ggplot(Teams_long, aes(x = yearID, y = number, color = names)) +
+  geom_line()
+```
+
